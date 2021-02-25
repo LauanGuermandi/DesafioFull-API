@@ -1,5 +1,5 @@
 using Financeiro.Data.Mapeamento;
-using Financeiro.Domain.Entidades;
+using Financeiro.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 public class DataContext : DbContext
@@ -11,7 +11,7 @@ public class DataContext : DbContext
     public DataContext(DbContextOptions options) : base(options)
     {
     }
-    
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
