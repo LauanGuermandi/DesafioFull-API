@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "husky": "^4.3.8"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "dotnet-format ./src/Financeiro.sln",
+      "pre-push": "dotnet build ./src/Financeiro.sln"
+    }
+  }
+}
