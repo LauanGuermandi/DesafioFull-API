@@ -10,7 +10,8 @@ namespace Financeiro.CrossCutting.DependencyInjection
         public static void Configure(IServiceCollection serviceCollection)
         {
             string connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
-            if (String.IsNullOrEmpty(connectionString)) {
+            if (String.IsNullOrEmpty(connectionString))
+            {
                 throw new DatabaseConnectionException("Variavel de ambiente 'CONNECTION_STRING' não está configurada.");
             }
 

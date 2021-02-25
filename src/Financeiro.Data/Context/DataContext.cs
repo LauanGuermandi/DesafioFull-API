@@ -5,8 +5,8 @@ using Microsoft.EntityFrameworkCore;
 public class DataContext : DbContext
 {
     public DbSet<Pessoa> Pessoas { get; set; }
-    public DbSet<Divida> Divida { get; set; }
-    public DbSet<Parcela> Parcela { get; set; }
+    public DbSet<Divida> Dividas { get; set; }
+    public DbSet<Parcela> Parcelas { get; set; }
 
     public DataContext(DbContextOptions options) : base(options)
     {
