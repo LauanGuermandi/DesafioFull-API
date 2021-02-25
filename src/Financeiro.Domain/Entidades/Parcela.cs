@@ -7,7 +7,7 @@ namespace Financeiro.Domain.Entidades
         public int Numero { get; set; }
         public DateTime DataVencimento { get; set; }
         public double Valor { get; set; }
-        public int DividaId { get; set; }
+        public Guid DividaId { get; set; }
         public Divida Divida { get; set; }
     }
 }

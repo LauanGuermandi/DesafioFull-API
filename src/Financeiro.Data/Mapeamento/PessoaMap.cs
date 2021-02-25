@@ -9,7 +9,7 @@ namespace Financeiro.Data.Mapeamento
         public void Configure(EntityTypeBuilder<Pessoa> builder)
         {
             builder
-              .ToTable("User");
+              .ToTable("Pessoa");
 
             builder
               .HasKey(p => p.Id);
