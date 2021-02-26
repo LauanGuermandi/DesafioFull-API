@@ -15,9 +15,15 @@ namespace Financeiro.Data.Mapeamento
               .HasKey(d => d.Id);
 
             builder
+              .Property(d => d.NumeroTitulo)
+              .HasColumnType("varchar(10)")
+              .HasMaxLength(10)
+              .IsRequired();
+
+            builder
               .Property(d => d.ValorOriginal)
-              .IsRequired()
-              .HasColumnType("numeric(18,2)");
+              .HasColumnType("numeric(18,2)")
+              .IsRequired();
 
             builder
               .Property(d => d.PessoaId)

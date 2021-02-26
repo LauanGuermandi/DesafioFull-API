@@ -11,20 +11,23 @@ namespace Financeiro.Application.Controllers
 {
     public class ApiControllerBase : ControllerBase
     {
-        public BadRequestObjectResult Failure(string message) {
+        public BadRequestObjectResult Failure(string message)
+        {
             return BadRequest(new { error = message });
         }
 
-        public ObjectResult ServerError(string message) {
+        public ObjectResult ServerError(string message)
+        {
             return StatusCode((int)HttpStatusCode.InternalServerError, new { error = message });
         }
 
-        public OkObjectResult Success([ActionResultObjectValue] object value){
+        public OkObjectResult Success([ActionResultObjectValue] object value)
+        {
             return Ok(value);
         }
 
-        public Uri makeUri(PessoaDto entity, string routeName = null) 
-        {   
+        public Uri makeUri(PessoaDto entity, string routeName = null)
+        {
             routeName = String.IsNullOrEmpty(routeName) ? "GetById" : routeName;
             return new Uri(Url.Link(routeName, new { id = entity.Id }));
         }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Financeiro.Domain.Dtos.DividaDtos;
 using Financeiro.Domain.Entities;
 using Financeiro.Domain.Interfaces.Repository;
 using Financeiro.Domain.Interfaces.Service;
@@ -16,14 +17,9 @@ namespace Financeiro.Service.Services
             _repository = repository;
         }
 
-        public async Task<bool> Delete(Guid id)
+        public Task<DividaCalculadaDto> Get(Guid id)
         {
-            return await _repository.DeleteAsync(id);
-        }
-
-        public async Task<Divida> Get(Guid id)
-        {
-            return await _repository.SelectAsync(id);
+            throw new NotImplementedException();
         }
 
         public async Task<IEnumerable<Divida>> GetAll()
@@ -31,14 +27,19 @@ namespace Financeiro.Service.Services
             return await _repository.SelectAsync();
         }
 
-        public async Task<Divida> Post(Divida user)
+        public async Task<Divida> Post(Divida divida)
         {
-            return await _repository.InsertAsync(user);
+            return await _repository.InsertAsync(divida);
         }
 
-        public async Task<Divida> Put(Divida user)
+        public Task<DividaDto> Post(DividaDto divida)
         {
-            return await _repository.UpdateAsync(user);
+            throw new NotImplementedException();
+        }
+
+        Task<IEnumerable<DividaCalculadaDto>> IDividaService.GetAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

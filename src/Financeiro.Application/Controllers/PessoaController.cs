@@ -25,14 +25,15 @@ namespace Financeiro.Application.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-                
+
             try
             {
                 var pessoas = await _service.GetAll();
-                if (pessoas == null) {
+                if (pessoas == null)
+                {
                     return NotFound();
                 }
-                
+
                 return Success(await _service.GetAll());
             }
             catch (ArgumentException e)
@@ -51,7 +52,8 @@ namespace Financeiro.Application.Controllers
             try
             {
                 var pessoa = await _service.Get(id);
-                if (pessoa == null) {
+                if (pessoa == null)
+                {
                     return NotFound();
                 }
 

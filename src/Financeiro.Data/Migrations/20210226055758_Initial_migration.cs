@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Data.Migrations
 {
-    public partial class Criar_Pessoa_Divida_Parcela : Migration
+    public partial class Initial_migration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,7 @@ namespace Data.Migrations
                     DataCriacao = table.Column<DateTime>(nullable: true),
                     DataAtualizacao = table.Column<DateTime>(nullable: false),
                     Nome = table.Column<string>(maxLength: 255, nullable: false),
-                    CPF = table.Column<int>(maxLength: 11, nullable: false)
+                    CPF = table.Column<string>(maxLength: 11, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,6 +30,7 @@ namespace Data.Migrations
                     DataCriacao = table.Column<DateTime>(nullable: true),
                     DataAtualizacao = table.Column<DateTime>(nullable: false),
                     ValorOriginal = table.Column<decimal>(type: "numeric(18,2)", nullable: false),
+                    NumeroTitulo = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: false),
                     PessoaId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>

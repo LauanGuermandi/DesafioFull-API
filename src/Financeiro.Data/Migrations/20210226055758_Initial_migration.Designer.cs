@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210225060118_Criar_Pessoa_Divida_Parcela")]
-    partial class Criar_Pessoa_Divida_Parcela
+    [Migration("20210226055758_Initial_migration")]
+    partial class Initial_migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,7 +18,7 @@ namespace Data.Migrations
                 .HasAnnotation("ProductVersion", "3.1.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("Financeiro.Domain.Entidades.Divida", b =>
+            modelBuilder.Entity("Financeiro.Domain.Entities.Divida", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -29,6 +29,11 @@ namespace Data.Migrations
 
                     b.Property<DateTime?>("DataCriacao")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<string>("NumeroTitulo")
+                        .IsRequired()
+                        .HasColumnType("varchar(10)")
+                        .HasMaxLength(10);
 
                     b.Property<Guid>("PessoaId")
                         .HasColumnType("char(36)");
@@ -43,7 +48,7 @@ namespace Data.Migrations
                     b.ToTable("Divida");
                 });
 
-            modelBuilder.Entity("Financeiro.Domain.Entidades.Parcela", b =>
+            modelBuilder.Entity("Financeiro.Domain.Entities.Parcela", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -74,14 +79,15 @@ namespace Data.Migrations
                     b.ToTable("Parcela");
                 });
 
-            modelBuilder.Entity("Financeiro.Domain.Entidades.Pessoa", b =>
+            modelBuilder.Entity("Financeiro.Domain.Entities.Pessoa", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<int>("CPF")
-                        .HasColumnType("int")
+                    b.Property<string>("CPF")
+                        .IsRequired()
+                        .HasColumnType("varchar(11) CHARACTER SET utf8mb4")
                         .HasMaxLength(11);
 
                     b.Property<DateTime>("DataAtualizacao")
@@ -103,18 +109,18 @@ namespace Data.Migrations
                     b.ToTable("Pessoa");
                 });
 
-            modelBuilder.Entity("Financeiro.Domain.Entidades.Divida", b =>
+            modelBuilder.Entity("Financeiro.Domain.Entities.Divida", b =>
                 {
-                    b.HasOne("Financeiro.Domain.Entidades.Pessoa", "Pessoa")
+                    b.HasOne("Financeiro.Domain.Entities.Pessoa", "Pessoa")
                         .WithMany("Dividas")
                         .HasForeignKey("PessoaId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Financeiro.Domain.Entidades.Parcela", b =>
+            modelBuilder.Entity("Financeiro.Domain.Entities.Parcela", b =>
                 {
-                    b.HasOne("Financeiro.Domain.Entidades.Divida", "Divida")
+                    b.HasOne("Financeiro.Domain.Entities.Divida", "Divida")
                         .WithMany("Parcelas")
                         .HasForeignKey("DividaId")
                         .OnDelete(DeleteBehavior.Restrict)
