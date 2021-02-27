@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Data.Migrations
 {
-    public partial class Initial_migration : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,6 +31,8 @@ namespace Data.Migrations
                     DataAtualizacao = table.Column<DateTime>(nullable: false),
                     ValorOriginal = table.Column<decimal>(type: "numeric(18,2)", nullable: false),
                     NumeroTitulo = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: false),
+                    PorcentagemJuros = table.Column<int>(nullable: false),
+                    PorcentagemMulta = table.Column<int>(nullable: false),
                     PessoaId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>

@@ -24,6 +24,14 @@ namespace Financeiro.Data.Mappings
               .Property(d => d.ValorOriginal)
               .HasColumnType("numeric(18,2)")
               .IsRequired();
+            
+            builder
+              .Property(d => d.PorcentagemJuros)
+              .IsRequired();
+            
+            builder
+              .Property(d => d.PorcentagemMulta)
+              .IsRequired();
 
             builder
               .Property(d => d.PessoaId)

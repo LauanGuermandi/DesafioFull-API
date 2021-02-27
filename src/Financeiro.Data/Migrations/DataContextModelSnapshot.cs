@@ -2,16 +2,14 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210226055758_Initial_migration")]
-    partial class Initial_migration
+    partial class DataContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,6 +35,12 @@ namespace Data.Migrations
 
                     b.Property<Guid>("PessoaId")
                         .HasColumnType("char(36)");
+
+                    b.Property<int>("PorcentagemJuros")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PorcentagemMulta")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("ValorOriginal")
                         .HasColumnType("numeric(18,2)");
