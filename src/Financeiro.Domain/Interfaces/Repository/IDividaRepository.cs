@@ -8,5 +8,6 @@ namespace Financeiro.Domain.Interfaces.Repository
     public interface IDividaRepository : IRepository<Divida>
     {
         Task<IEnumerable<Divida>> GetDividasByPessoaId(Guid pessoaId);
+        Task<Divida> GetDividaCalculada(Guid id);
     }
 }

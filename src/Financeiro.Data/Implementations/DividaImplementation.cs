@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Financeiro.Data.Repository;
@@ -15,9 +16,15 @@ namespace Financeiro.Data.Implementations
         {
             _dataset = context.Set<Divida>();
         }
-        public Task<IEnumerable<Divida>> GetDividasByPessoaId(Guid pessoaId)
+
+        public async Task<IEnumerable<Divida>> GetDividasByPessoaId(Guid pessoaId)
         {
-            throw new NotImplementedException();
+           return await _dataset.Where(d => d.PessoaId.Equals(pessoaId)).ToListAsync();
+        }
+
+        public async Task<Divida> GetDividaCalculada(Guid id) 
+        {
+            return await _dataset.Include(d => d.Parcelas).Where(d => d.Id.Equals(id)).SingleOrDefaultAsync(); 
         }
     }
 }

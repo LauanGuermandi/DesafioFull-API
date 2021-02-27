@@ -13,7 +13,10 @@ namespace Financeiro.Data.Mappings
 
             builder
               .HasKey(d => d.Id);
-
+            
+            builder
+              .HasIndex(d => d.NumeroTitulo)
+              .IsUnique();
             builder
               .Property(d => d.NumeroTitulo)
               .HasColumnType("varchar(10)")

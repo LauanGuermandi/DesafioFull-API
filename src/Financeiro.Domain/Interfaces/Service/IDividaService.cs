@@ -7,7 +7,7 @@ namespace Financeiro.Domain.Interfaces.Service
 {
     public interface IDividaService
     {
-        Task<DividaResultDto> Get(Guid id);
+        Task<DividaCalculadaDto> Get(Guid id);
         Task<IEnumerable<DividaResultDto>> GetByPessoaId(Guid id);
         Task<DividaResultDto> Post(DividaDto divida);
     }

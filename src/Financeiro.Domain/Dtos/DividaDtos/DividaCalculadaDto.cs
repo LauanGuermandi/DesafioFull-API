@@ -1,4 +1,7 @@
+using System.Collections;
 using System;
+using System.Collections.Generic;
+using Financeiro.Domain.Dtos.ParcelaDtos;
 
 namespace Financeiro.Domain.Dtos.DividaDtos
 {
@@ -12,8 +15,8 @@ namespace Financeiro.Domain.Dtos.DividaDtos
 
         public string NumeroTitulo { get; set; }
         public double ValorOriginal { get; set; }
-        public int DiasAtraso { get; set; }
-        public double ValorAtualizado { get; set; }
-        public int QuantidadeParcelas { get; set; }
+        public double Multa { get; set; }
+
+        public virtual IEnumerable<ParcelaCalculadaDto> Parcelas { get; set; }
     }
 }

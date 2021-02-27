@@ -26,7 +26,21 @@ namespace Financeiro.Domain.Models
             get { return _valorOriginal; }
             set { _valorOriginal = value; }
         }
+        
+        private int _porcentagemJuros;
+        public int PorcentagemJuros
+        {
+            get { return _porcentagemJuros; }
+            set { _porcentagemJuros = value; }
+        }
 
+        private int _porcentagemMulta;
+        public int PorcentagemMulta
+        {
+            get { return _porcentagemMulta; }
+            set { _porcentagemMulta = value; }
+        }
+        
         private List<ParcelaModel> _parcelas;
         public List<ParcelaModel> Parcelas
         {
