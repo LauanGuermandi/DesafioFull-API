@@ -1,4 +1,4 @@
-using Financeiro.Data.Mapeamento;
+using Financeiro.Data.Mappings;
 using Financeiro.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 

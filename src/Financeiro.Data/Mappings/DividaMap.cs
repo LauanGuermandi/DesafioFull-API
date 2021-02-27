@@ -2,7 +2,7 @@ using Financeiro.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Financeiro.Data.Mapeamento
+namespace Financeiro.Data.Mappings
 {
     public class DividaMap : IEntityTypeConfiguration<Divida>
     {
