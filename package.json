@@ -8,5 +8,9 @@
       "pre-commit": "lint-staged --relative",
       "pre-push": "dotnet build ./src/Financeiro.sln"
     }
+  },
+  "scripts": {
+    "preinstall": "dotnet tool restore"
   }
 }
+
