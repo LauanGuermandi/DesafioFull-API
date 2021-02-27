@@ -7,6 +7,7 @@ public class DataContext : DbContext
     public DbSet<Pessoa> Pessoas { get; set; }
     public DbSet<Divida> Dividas { get; set; }
     public DbSet<Parcela> Parcelas { get; set; }
+    public DbSet<Parametro> Parametros { get; set; }
 
     public DataContext(DbContextOptions options) : base(options)
     {
@@ -18,5 +19,6 @@ public class DataContext : DbContext
         modelBuilder.ApplyConfiguration(new PessoaMap());
         modelBuilder.ApplyConfiguration(new DividaMap());
         modelBuilder.ApplyConfiguration(new ParcelaMap());
+        modelBuilder.ApplyConfiguration(new ParametroMap());
     }
 }
