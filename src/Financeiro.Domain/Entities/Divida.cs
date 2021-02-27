@@ -9,6 +9,6 @@ namespace Financeiro.Domain.Entities
         public string NumeroTitulo { get; set; }
         public Guid PessoaId { get; set; }
         public Pessoa Pessoa { get; set; }
-        public List<Parcela> Parcelas { get; private set; }
+        public virtual List<Parcela> Parcelas { get; private set; }
     }
 }

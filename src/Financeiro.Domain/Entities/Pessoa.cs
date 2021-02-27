@@ -6,6 +6,6 @@ namespace Financeiro.Domain.Entities
     {
         public string Nome { get; set; }
         public string CPF { get; set; }
-        public List<Divida> Dividas { get; private set; }
+        public virtual List<Divida> Dividas { get; private set; }
     }
 }

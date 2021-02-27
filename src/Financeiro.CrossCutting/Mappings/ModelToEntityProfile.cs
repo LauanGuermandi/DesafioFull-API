@@ -11,6 +11,14 @@ namespace Financeiro.CrossCutting.Mappings
             // PESSOA
             CreateMap<PessoaModel, Pessoa>()
                .ReverseMap();
+            
+            // DIVIDA
+            CreateMap<DividaModel, Divida>()
+                .ReverseMap();
+
+            // PARCELA
+            CreateMap<ParcelaModel, Parcela>()
+                .ReverseMap();
         }
     }
 }

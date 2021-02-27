@@ -1,45 +1,22 @@
-using System.ComponentModel.DataAnnotations;
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using Financeiro.Domain.Dtos.PessoaDtos;
+using Financeiro.Domain.Dtos.DividaDtos;
+using Financeiro.Domain.Exceptions;
 using Financeiro.Domain.Interfaces.Service;
 using Microsoft.AspNetCore.Mvc;
-using Financeiro.Domain.Exceptions;
 
 namespace Financeiro.Application.Controllers
 {
     [Route("/api/v1/[controller]")]
     [ApiController]
-    public class PessoaController : ApiControllerBase
+    public class DividaController : ApiControllerBase
     {
-        private IPessoaService _service;
+        private IDividaService _service;
 
-        public PessoaController(IPessoaService service)
+        public DividaController(IDividaService service)
         {
             this._service = service;
-        }
-
-        [HttpGet]
-        public async Task<ActionResult> GetAll()
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            try
-            {
-                var pessoas = await _service.GetAll();
-                if (pessoas == null)
-                {
-                    return NotFound();
-                }
-
-                return Ok(pessoas);
-            }
-            catch (ArgumentException e)
-            {
-                return ServerError(e.Message);
-            }
         }
 
         [HttpGet]
@@ -51,13 +28,13 @@ namespace Financeiro.Application.Controllers
 
             try
             {
-                var pessoa = await _service.Get(id);
-                if (pessoa == null)
+                var divida = await _service.Get(id);
+                if (divida == null)
                 {
                     return NotFound();
                 }
 
-                return Ok(pessoa);
+                return Ok(divida);
             }
             catch (ArgumentException e)
             {
@@ -66,11 +43,11 @@ namespace Financeiro.Application.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] PessoaCreateDto pessoa)
+        public async Task<ActionResult> Post([FromBody] DividaDto pessoa)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-
+            
             try
             {
                 var result = await this._service.Post(pessoa);

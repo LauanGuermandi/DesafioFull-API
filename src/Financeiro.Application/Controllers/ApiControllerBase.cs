@@ -13,23 +13,16 @@ namespace Financeiro.Application.Controllers
     {
         public BadRequestObjectResult Failure(string message)
         {
-            return BadRequest(new { error = message });
+            return BadRequest(makeErrorContent(message));
         }
 
         public ObjectResult ServerError(string message)
         {
-            return StatusCode((int)HttpStatusCode.InternalServerError, new { error = message });
+            return StatusCode((int)HttpStatusCode.InternalServerError, makeErrorContent(message));
         }
 
-        public OkObjectResult Success([ActionResultObjectValue] object value)
-        {
-            return Ok(value);
-        }
-
-        public Uri makeUri(PessoaDto entity, string routeName = null)
-        {
-            routeName = String.IsNullOrEmpty(routeName) ? "GetById" : routeName;
-            return new Uri(Url.Link(routeName, new { id = entity.Id }));
+        private object makeErrorContent (string message) {
+            return new { errors = new[] { message } };
         }
     }
 }

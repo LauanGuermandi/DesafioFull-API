@@ -45,9 +45,8 @@ namespace Financeiro.Service.Services
             bool exists = await _pessoaRepository.ExistAsync(pessoa.CPF);
 
             if (exists)
-            {
                 throw new DuplicatedValueException("CPF", "CPF já cadastrado.");
-            }
+
 
             var model = _mapper.Map<PessoaModel>(pessoa);
             var entity = _mapper.Map<Pessoa>(model);
