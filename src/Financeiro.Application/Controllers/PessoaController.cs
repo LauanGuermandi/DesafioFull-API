@@ -11,7 +11,7 @@ namespace Financeiro.Application.Controllers
 {
     [Route("/api/v1/[controller]")]
     [ApiController]
-    public class PessoaController : ApiControllerBase
+    public class PessoaController : ControllerBase
     {
         private IPessoaService _service;
 
@@ -38,7 +38,7 @@ namespace Financeiro.Application.Controllers
             }
             catch (ArgumentException e)
             {
-                return ServerError(e.Message);
+                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }
         }
 
@@ -84,11 +84,11 @@ namespace Financeiro.Application.Controllers
             }
             catch (DuplicatedValueException d)
             {
-                return Failure(d.Message);
+                return BadRequest(d.Message);
             }
             catch (ArgumentException e)
             {
-                return ServerError(e.Message);
+                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }
         }
     }
