@@ -13,13 +13,13 @@ namespace Financeiro.Service.Services
 {
     public class DividaService : IDividaService
     {
-        private IRepository<Divida> _repository;
-        
+        private readonly IDividaRepository _dividaRepository;
+
         private readonly IMapper _mapper;
 
-        public DividaService(IRepository<Divida> repository, IMapper mapper)
+        public DividaService(IDividaRepository dividaRepository, IMapper mapper)
         {
-            _repository = repository;
+            _dividaRepository = dividaRepository;
             _mapper = mapper;
         }
 
@@ -28,9 +28,10 @@ namespace Financeiro.Service.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<DividaResultDto>> GetByPessoaId(Guid id)
+        public async Task<IEnumerable<DividaResultDto>> GetByPessoaId(Guid id)
         {
-            throw new NotImplementedException();
+            var listEntity = await _dividaRepository.SelectAsync();
+            return _mapper.Map<IEnumerable<DividaResultDto>>(listEntity);
         }
 
         public async Task<DividaResultDto> Post(DividaDto divida)
@@ -38,7 +39,7 @@ namespace Financeiro.Service.Services
             var dividaModel = _mapper.Map<DividaModel>(divida);
             var dividaEntity = _mapper.Map<Divida>(dividaModel);
 
-            var result = await _repository.InsertAsync(dividaEntity);
+            var result = await _dividaRepository.InsertAsync(dividaEntity);
 
             return _mapper.Map<DividaResultDto>(result);
         }

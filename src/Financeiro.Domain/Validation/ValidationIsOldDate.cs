@@ -10,11 +10,12 @@ namespace Financeiro.Domain.Validation
             DateTime dataVencimento;
 
             bool parsed = DateTime.TryParse(value as string, out dataVencimento);
-            if(!parsed)
+            if (!parsed)
                 return false;
 
             bool isOldDate = DateTime.Compare(dataVencimento, DateTime.UtcNow) < 0;
-            if (!isOldDate) {
+            if (!isOldDate)
+            {
                 return false;
             }
 

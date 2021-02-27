@@ -10,8 +10,8 @@ namespace Financeiro.CrossCutting.DependencyInjection
     {
         public static void Configure(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddTransient<IDividaService, DividaService>();
             serviceCollection.AddTransient<IPessoaService, PessoaService>();
+            serviceCollection.AddTransient<IDividaService, DividaService>();
 
             var mapperConfig = new MapperConfiguration(mc =>
             {

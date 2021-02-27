@@ -43,7 +43,7 @@ namespace Financeiro.Application.Controllers
         }
 
         [HttpGet]
-        [Route("{id}", Name = "GetById")]
+        [Route("{id}", Name = "GetPessoaById")]
         public async Task<ActionResult> Get(Guid id)
         {
             if (!ModelState.IsValid)
@@ -76,7 +76,7 @@ namespace Financeiro.Application.Controllers
                 var result = await this._service.Post(pessoa);
                 if (result != null)
                 {
-                    string url = Url.Link("GetWithId", new { id = result.Id });
+                    string url = Url.Link("GetPessoaById", new { id = result.Id });
                     return Created(new Uri(url), result);
                 }
 

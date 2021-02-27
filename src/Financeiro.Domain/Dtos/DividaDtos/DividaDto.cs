@@ -16,7 +16,7 @@ namespace Financeiro.Domain.Dtos.DividaDtos
         [Required(ErrorMessage = "O campo 'Número do título' é obrigatório.")]
         [StringLength(10, ErrorMessage = "O campo 'Número do título' é inválido.")]
         public string NumeroTitulo { get; set; }
-        
+
         [Required(ErrorMessage = "É necessário adicionar ao menos uma parcela.")]
         [MinLength(1, ErrorMessage = "É necessário adicionar ao menos uma parcela.")]
         public List<ParcelaDto> Parcelas { get; set; }

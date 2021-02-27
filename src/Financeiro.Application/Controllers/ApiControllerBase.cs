@@ -21,7 +21,8 @@ namespace Financeiro.Application.Controllers
             return StatusCode((int)HttpStatusCode.InternalServerError, makeErrorContent(message));
         }
 
-        private object makeErrorContent (string message) {
+        private object makeErrorContent(string message)
+        {
             return new { errors = new[] { message } };
         }
     }

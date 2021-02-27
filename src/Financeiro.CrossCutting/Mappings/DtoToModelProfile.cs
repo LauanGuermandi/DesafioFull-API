@@ -18,7 +18,7 @@ namespace Financeiro.CrossCutting.Mappings
             // DIVIDA
             CreateMap<DividaDto, DividaModel>()
                 .ReverseMap();
-            
+
             // PARCELA
             CreateMap<ParcelaDto, ParcelaModel>()
                 .ReverseMap();

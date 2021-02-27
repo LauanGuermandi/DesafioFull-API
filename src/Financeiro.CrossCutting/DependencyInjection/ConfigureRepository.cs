@@ -11,6 +11,7 @@ namespace Financeiro.CrossCutting.DependencyInjection
         {
             serviceCollection.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             serviceCollection.AddScoped<IPessoaRepository, PessoaImplementation>();
+            serviceCollection.AddScoped<IDividaRepository, DividaImplementation>();
         }
     }
 }

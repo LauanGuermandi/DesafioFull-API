@@ -10,19 +10,19 @@ namespace Financeiro.Domain.Models
             get { return _numero; }
             set { _numero = value; }
         }
-        
+
         private DateTime _dataVencimento;
         public DateTime DataVencimento
         {
             get { return _dataVencimento; }
             set { _dataVencimento = value; }
         }
-        
+
         private double _valor;
         public double Valor
         {
             get { return _valor; }
             set { _valor = value; }
-        }     
+        }
     }
 }

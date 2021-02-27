@@ -14,29 +14,26 @@ namespace Financeiro.Service.Services
 {
     public class PessoaService : IPessoaService
     {
-        private readonly IRepository<Pessoa> _repository;
         private readonly IPessoaRepository _pessoaRepository;
         private readonly IMapper _mapper;
 
         public PessoaService(
-            IRepository<Pessoa> repository,
             IPessoaRepository pessoaRepository,
             IMapper mapper)
         {
-            _repository = repository;
             _pessoaRepository = pessoaRepository;
             _mapper = mapper;
         }
 
         public async Task<PessoaDto> Get(Guid Id)
         {
-            var entity = await _repository.SelectAsync(Id);
+            var entity = await _pessoaRepository.SelectAsync(Id);
             return _mapper.Map<PessoaDto>(entity);
         }
 
         public async Task<IEnumerable<PessoaDto>> GetAll()
         {
-            var listEntity = await _repository.SelectAsync();
+            var listEntity = await _pessoaRepository.SelectAsync();
             return _mapper.Map<IEnumerable<PessoaDto>>(listEntity);
         }
 
@@ -50,7 +47,7 @@ namespace Financeiro.Service.Services
 
             var model = _mapper.Map<PessoaModel>(pessoa);
             var entity = _mapper.Map<Pessoa>(model);
-            var result = await _repository.InsertAsync(entity);
+            var result = await _pessoaRepository.InsertAsync(entity);
 
             return _mapper.Map<PessoaDto>(result);
         }

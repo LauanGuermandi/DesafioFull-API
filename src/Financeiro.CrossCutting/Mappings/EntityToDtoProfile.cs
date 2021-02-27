@@ -16,11 +16,12 @@ namespace Financeiro.CrossCutting.Mappings
                 .ReverseMap();
 
             // DIVIDA
+            CreateMap<DividaCalculadaDto, Divida>()
+                .ReverseMap();
             CreateMap<DividaResultDto, Divida>()
                 .ReverseMap();
             CreateMap<DividaDto, Divida>()
                 .ReverseMap();
-        
         }
     }
 }

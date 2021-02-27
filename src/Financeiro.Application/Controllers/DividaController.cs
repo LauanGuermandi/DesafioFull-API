@@ -20,7 +20,30 @@ namespace Financeiro.Application.Controllers
         }
 
         [HttpGet]
-        [Route("{id}", Name = "GetById")]
+        [Route("FromPessoa/{id}", Name = "GetByPessoaId")]
+        public async Task<ActionResult> GetByPessoaId(Guid id)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            try
+            {
+                var dividas = await _service.GetByPessoaId(id);
+                if (dividas == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(dividas);
+            }
+            catch (ArgumentException e)
+            {
+                return ServerError(e.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("{id}", Name = "GetDividaById")]
         public async Task<ActionResult> Get(Guid id)
         {
             if (!ModelState.IsValid)
@@ -43,17 +66,17 @@ namespace Financeiro.Application.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] DividaDto pessoa)
+        public async Task<ActionResult> Post([FromBody] DividaDto divida)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            
+
             try
             {
-                var result = await this._service.Post(pessoa);
+                var result = await this._service.Post(divida);
                 if (result != null)
                 {
-                    string url = Url.Link("GetWithId", new { id = result.Id });
+                    string url = Url.Link("GetDividaById", new { id = result.Id });
                     return Created(new Uri(url), result);
                 }
 
