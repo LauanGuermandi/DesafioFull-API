@@ -25,6 +25,6 @@ namespace Financeiro.Domain.Dtos.DividaDtos
 
         [Required(ErrorMessage = "É necessário adicionar ao menos uma parcela.")]
         [MinLength(1, ErrorMessage = "É necessário adicionar ao menos uma parcela.")]
-        public List<ParcelaDto> Parcelas { get; set; }
+        public IEnumerable<ParcelaDto> Parcelas { get; set; }
     }
 }

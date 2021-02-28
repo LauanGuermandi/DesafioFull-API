@@ -27,6 +27,14 @@ namespace Application
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder => builder.WithOrigins(Environment.GetEnvironmentVariable("FRONTEND_DOMAIN"))
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .SetIsOriginAllowed((host) => true));
+            });
+
             ConfigureDatabaseContext.Configure(services);
             ConfigureRepository.Configure(services);
             ConfigureService.Configure(services);
@@ -50,6 +58,7 @@ namespace Application
             });
 
             app.UseRouting();
+            app.UseCors("CorsPolicy");
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
