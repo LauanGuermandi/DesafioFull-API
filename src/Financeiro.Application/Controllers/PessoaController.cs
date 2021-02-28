@@ -65,6 +65,29 @@ namespace Financeiro.Application.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("Search/{text}", Name = "Search")]
+        public async Task<ActionResult> Search(string text)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            try
+            {
+                var pessoa = await _service.Search(text);
+                if (pessoa == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(pessoa);
+            }
+            catch (ArgumentException e)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
+
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] PessoaCreateDto pessoa)
         {

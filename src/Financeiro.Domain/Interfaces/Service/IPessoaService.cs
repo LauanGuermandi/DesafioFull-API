@@ -10,5 +10,6 @@ namespace Financeiro.Domain.Interfaces.Service
         Task<IEnumerable<PessoaDto>> GetAll();
         Task<PessoaDto> Get(Guid Id);
         Task<PessoaDto> Post(PessoaCreateDto pessoa);
+        Task<IEnumerable<PessoaDto>> Search(string text);
     }
 }

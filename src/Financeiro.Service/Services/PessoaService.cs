@@ -27,6 +27,12 @@ namespace Financeiro.Service.Services {
             return _mapper.Map<PessoaDto>(entity);
         }
 
+        public async Task<IEnumerable<PessoaDto>> Search(string text) {
+            var listEntity = await _pessoaRepository.SearchByText(text);
+            return _mapper.Map<IEnumerable<PessoaDto>>(listEntity);
+        }
+
+
         public async Task<IEnumerable<PessoaDto>> GetAll() {
             var listEntity = await _pessoaRepository.SelectAsync();
             return _mapper.Map<IEnumerable<PessoaDto>>(listEntity);

@@ -1,3 +1,5 @@
+using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Financeiro.Data.Repository;
 using Financeiro.Domain.Entities;
@@ -16,6 +18,10 @@ namespace Financeiro.Data.Implementations
         public async Task<bool> ExistAsync(string cpf)
         {
             return await _dataset.AnyAsync(p => p.CPF.Equals(cpf));
+        }
+
+        public async Task<IEnumerable<Pessoa>> SearchByText(string text) {
+            return await _dataset.Where(p => p.Nome.ToLower().Contains(text)).ToListAsync();
         }
     }
 }
