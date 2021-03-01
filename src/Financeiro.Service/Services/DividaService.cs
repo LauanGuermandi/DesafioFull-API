@@ -17,10 +17,17 @@ namespace Financeiro.Service.Services
 
         private readonly IMapper _mapper;
 
-        public DividaService(IDividaRepository dividaRepository, IMapper mapper)
+        private readonly IPessoaService _pessoaService;
+
+        public DividaService(
+            IDividaRepository dividaRepository, 
+            IMapper mapper,
+            IPessoaService pessoaService
+        )
         {
             _dividaRepository = dividaRepository;
             _mapper = mapper;
+            _pessoaService = pessoaService;
         }
 
         public async Task<DividaCalculadaDto> Get(Guid id)
@@ -33,14 +40,20 @@ namespace Financeiro.Service.Services
             foreach (var parcela in dividaCalculada.Parcelas)
             {
                 parcela.DiasAtrasado = (int) DateTime.UtcNow.Subtract(parcela.DataVencimento).TotalDays;
+                dividaCalculada.DiasAtrasado += parcela.DiasAtrasado;
                 
                 if (parcela.DiasAtrasado <= 0) {
                     throw new InconsistentDataException("Erro ao calcular dias em atraso.");
                 }
 
                 parcela.Juros = ((Convert.ToDouble(divida.PorcentagemJuros) / 100.0) / 30.0) * parcela.DiasAtrasado;
+                
                 parcela.ValorAtualizado = (parcela.Juros + parcela.ValorOriginal);
+                dividaCalculada.ValorAtualizado += parcela.ValorAtualizado;
             }
+
+            var pessoa = await _pessoaService.Get(divida.PessoaId);
+            dividaCalculada.NomeDevedor = pessoa.Nome;
 
             return dividaCalculada;
         }
