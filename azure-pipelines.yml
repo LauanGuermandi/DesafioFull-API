@@ -8,7 +8,6 @@ pool:
 variables:
   solution: 'src/Financeiro.sln'
   buildConfiguration: 'Release'
-  CONNECTION_STRING: 'Server=localhost;Port=3303;Database=Financeiro;Uid=root;Pwd=Secret@1234;'
 
 steps:
 - task: DotNetCoreCLI@2
