@@ -1,5 +1,7 @@
 # DesafioFull-Beckend
 
+[![Build Status](https://dev.azure.com/lauanguermandi/TesteDevops/_apis/build/status/LauanGuermandi.DesafioFull-Backend?branchName=main)](https://dev.azure.com/lauanguermandi/TesteDevops/_build/latest?definitionId=1&branchName=main)
+
 ## Configurar string de conexão com o banco
 
 `
